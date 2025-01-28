@@ -95,7 +95,7 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
   try {
-    const userChats = UserChats.findOne({ userId: userId });
+    const userChats = await UserChats.find({ userId });
 
     res.status(200).send(userChats[0].chats);
   } catch (err) {
